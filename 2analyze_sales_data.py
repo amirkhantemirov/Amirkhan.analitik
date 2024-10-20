@@ -8,28 +8,23 @@ Created on Tue Aug  6 18:39:15 2024
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Мәліметтерді оқу
+
 df = pd.read_csv('complex_sales_data.csv')
 
-# Өнімдер бойынша жалпы сатылымдарды есептеу
+
 total_sales = df.groupby('Product')['Sales'].sum()
 
-# Өңірлер бойынша орташа сатылымдарды есептеу
+
 average_sales_by_region = df.groupby('Region')['Sales'].mean()
 
-# Мерзім бойынша сатылымдардың өзгеруін талдау
+
 df['Date'] = pd.to_datetime(df['Date'])
 sales_trend = df.groupby('Date')['Sales'].sum()
-
-# Жас санаты бойынша сатылымдарды есептеу
 sales_by_age_group = df.groupby('Age_Group')['Sales'].sum()
-
-# Сату каналдары бойынша сатылымдарды есептеу
 sales_by_channel = df.groupby('Sales_Channel')['Sales'].sum()
 
-# Графиктер жасау
-plt.figure(figsize=(14, 10))
 
+plt.figure(figsize=(14, 10))
 plt.subplot(3, 2, 1)
 total_sales.plot(kind='bar', title='Total Sales by Product')
 plt.ylabel('Total Sales')
